@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="300" pageHeight="260" columnWidth="260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02ddc48c-1dd8-4f18-b2b5-20a5e23044b3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     parkir.`jenis` AS parkir_jenis,
+     parkir.`no_parkir` AS parkir_no_parkir,
+     parkir.`masuk` AS parkir_masuk
+FROM
+     `parkir` parkir
+where no_parkir = $P{no};]]>
+	</queryString>
+	<field name="parkir_jenis" class="java.lang.String"/>
+	<field name="parkir_no_parkir" class="java.lang.String"/>
+	<field name="parkir_masuk" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="260" height="35" uuid="a71fcf63-8918-4dc5-b209-dcbf6e681fe5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="17"/>
+				</textElement>
+				<text><![CDATA[MALL ANGGOTA EE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="35" width="166" height="13" uuid="4422fc43-5806-4bd9-acaf-7d2d0fc2d632"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jalan Perintis Kemerdekaan VII]]></text>
+			</staticText>
+			<line>
+				<reportElement x="6" y="59" width="240" height="1" uuid="50ae1c90-ac6e-4ba0-b616-139c7cd10657"/>
+			</line>
+			<staticText>
+				<reportElement x="28" y="58" width="197" height="20" uuid="18d51c22-c996-444b-ae3b-7fd37329574d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Keamanan Kendaraan Anda Merupakan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="78" width="197" height="20" uuid="7973ffbf-30de-48e5-8598-6dd66449b826"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggung Jawab Kami]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="46" width="166" height="13" uuid="b81030dd-2aa0-4bd3-b7e0-ef8dcf6b2134"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Tlp : 085272234035]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="76" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="4" width="260" height="60" backcolor="#FFFF66" uuid="8e469124-efc8-4c7a-a070-0806de00e90a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="4" width="67" height="20" uuid="62f68d95-a18e-4e38-86d8-598fcbd35167"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NO PARKIR   :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="24" width="67" height="20" uuid="6443dd81-22eb-4ae2-94b5-441561b65dc5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JENIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="44" width="67" height="20" uuid="a601a000-a505-47e2-a7b7-3675ba78d0e2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JAM MASUK]]></text>
+			</staticText>
+			<textField pattern="HH.mm.ss">
+				<reportElement x="78" y="44" width="177" height="20" uuid="81d77e57-b902-4584-acba-3f5d622836c7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parkir_masuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="4" width="100" height="20" uuid="e447eac4-a5d2-4619-900e-03fb74082598"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parkir_no_parkir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="24" width="100" height="20" uuid="7ef45c8d-8879-4df5-ba51-3f005b7a421c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parkir_jenis}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="169" y="11" width="77" height="20" uuid="772835ee-e485-444e-9c60-fb3dc8016ba4"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Terima Kasih]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="270" pageHeight="400" columnWidth="230" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="90720f22-fde9-476c-b422-dbdc59946a3e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="bulan" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     transaksi.`tgl` AS transaksi_tgl,
+     transaksi.`bayar` AS transaksi_bayar,
+     transaksi.`user` AS transaksi_user
+FROM
+     `transaksi` transaksi
+where month(tgl) = $P{bulan};]]>
+	</queryString>
+	<field name="transaksi_tgl" class="java.sql.Date"/>
+	<field name="transaksi_bayar" class="java.lang.Integer"/>
+	<field name="transaksi_user" class="java.lang.String"/>
+	<variable name="transaksi_bayar_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{transaksi_bayar}]]></variableExpression>
+	</variable>
+	<variable name="transaksi_bayar_2" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{transaksi_bayar}]]></variableExpression>
+	</variable>
+	<variable name="transaksi_bayar_3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{transaksi_bayar}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="58" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="5" width="220" height="39" backcolor="#FFFF66" uuid="9229cb2e-a697-4ccd-98f6-cc76993b0a21"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="5" width="217" height="20" uuid="977fb50a-72b3-49e5-a524-4014e4b6de73"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN BULANAN PERPARKIRAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="25" width="203" height="20" uuid="99d40d50-2bac-44be-bee0-b141276db467"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MALL ANGGOTA EE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<textField pattern="MMMMM-yyyy">
+				<reportElement x="56" y="0" width="162" height="20" uuid="723f2fa4-eb12-4b0b-bee4-a21ec3d8fb65"/>
+				<textFieldExpression><![CDATA[$F{transaksi_tgl}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="10" y="28" width="100" height="20" backcolor="#FFFF66" uuid="8a068881-0a64-4d0e-960c-6067a51b389c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="28" width="100" height="20" backcolor="#FFFF66" uuid="a7678926-20df-480a-a616-192c7e99aab7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="110" y="28" width="100" height="20" uuid="7aeb2542-6300-4cc1-8e84-784f3ab3a602"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TARIF PARKIR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="28" width="100" height="20" uuid="4a8727a8-ba80-44e3-96d5-c2f96d8aad37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEGAWAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="42" height="20" uuid="c131f494-bde4-4ddd-a38c-1aadc72d234e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BULAN : ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="0" width="100" height="20" uuid="2e063fc4-c5eb-4e22-9bd4-d3513ebafe28"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="110" y="0" width="100" height="20" uuid="de675f1b-fee1-4043-b387-d18940b6cfbe"/>
+			</rectangle>
+			<textField pattern="#,##0">
+				<reportElement x="136" y="0" width="50" height="20" uuid="11f2d72f-c512-423b-b2bf-c9081e9cc3e3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{transaksi_bayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="100" height="20" uuid="60158468-4940-4e43-b5ca-202a33777972"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{transaksi_user}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="130" y="11" width="100" height="20" uuid="bdd2ae7c-bd4b-4454-a13b-e96f4dd165da"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="10" y="10" width="203" height="20" backcolor="#FFFF66" uuid="6c8c2950-4364-46d0-8fa1-293217bcb149"/>
+			</rectangle>
+			<textField pattern="#,##0">
+				<reportElement x="136" y="10" width="50" height="20" uuid="5078baf4-2aa0-4310-afe7-9eff0c7504dc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{transaksi_bayar_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="10" width="115" height="20" uuid="0576ce6f-a9a2-4cf1-80fe-e4c3ea4c2bae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL TARIF PARKIR : ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
